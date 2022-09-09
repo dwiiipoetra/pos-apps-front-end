@@ -1,14 +1,8 @@
 import React from "react";
-import Navbar from "../../components/navbar";
-import Sidebar from "../../components/sidebar";
 
 const AddUsers = () => {
   return (
-    <div className="wrapper">
-      <Navbar />
-      <Sidebar />
-
-      {/* <!-- Content Wrapper. Contains page content --> */}
+    <>
       <div className="content-wrapper">
         {/* <!-- Content Header (Page header) --> */}
         <div className="content-header">
@@ -81,21 +75,7 @@ const AddUsers = () => {
           {/* <!-- /.container-fluid --> */}
         </div>
       </div>
-      {/* <!-- /.content-header --> */}
-
-      {/* <!-- Main content --> */}
-      <section className="content">
-        <div className="container-fluid"></div>
-        {/* <!-- /.row --> */}
-
-        {/* <!-- Control Sidebar --> */}
-        <aside className="control-sidebar control-sidebar-dark">
-          {/* <!-- Control sidebar content goes here --> */}
-        </aside>
-        {/* <!-- /.control-sidebar --> */}
-      </section>
-      {/* <!-- ./wrapper --> */}
-    </div>
+    </>
   );
 };
 export default AddUsers;
