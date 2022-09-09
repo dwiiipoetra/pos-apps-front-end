@@ -1,6 +1,8 @@
-import "./App.css";
-import Login from "./pages/login";
+import { useState } from "react";
+import AddUsers from "./pages/users/addUsers";
+
 function App() {
-  return <Login />;
+  return <AddUsers />;
 }
+
 export default App;
