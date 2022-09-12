@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Users = () => {
   return (
@@ -16,20 +17,14 @@ const Users = () => {
 
           <div className="row mb-2">
             <div className="col-md-6">
-              <a href="./add-user.html" className="btn btn-success">
+              <Link to="add-users" className="btn btn-success">
                 <i className="fa fa-plus"></i>&nbsp;&nbsp;Add New
-              </a>
+              </Link>
             </div>
             <div className="col-md-6">
               <ol className="breadcrumb float-sm-right">
                 <div className="input-group rounded">
-                  <input
-                    type="search"
-                    className="form-control rounded"
-                    placeholder="Search"
-                    aria-label="Search"
-                    aria-describedby="search-addon"
-                  />
+                  <input type="search" className="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
                   <span className="input-group-text border-0" id="search-addon">
                     <i className="fas fa-search"></i>
                   </span>
@@ -68,10 +63,7 @@ const Users = () => {
                         <td>
                           <span className="tag tag-success">Approved</span>
                         </td>
-                        <td>
-                          Bacon ipsum dolor sit amet salami venison chicken
-                          flank fatback doner.
-                        </td>
+                        <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
                       </tr>
                       <tr>
                         <td>219</td>
@@ -80,10 +72,7 @@ const Users = () => {
                         <td>
                           <span className="tag tag-warning">Pending</span>
                         </td>
-                        <td>
-                          Bacon ipsum dolor sit amet salami venison chicken
-                          flank fatback doner.
-                        </td>
+                        <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
                       </tr>
                       <tr>
                         <td>657</td>
@@ -92,10 +81,7 @@ const Users = () => {
                         <td>
                           <span className="tag tag-primary">Approved</span>
                         </td>
-                        <td>
-                          Bacon ipsum dolor sit amet salami venison chicken
-                          flank fatback doner.
-                        </td>
+                        <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
                       </tr>
                       <tr>
                         <td>175</td>
@@ -104,10 +90,7 @@ const Users = () => {
                         <td>
                           <span className="tag tag-danger">Denied</span>
                         </td>
-                        <td>
-                          Bacon ipsum dolor sit amet salami venison chicken
-                          flank fatback doner.
-                        </td>
+                        <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
                       </tr>
                     </tbody>
                   </table>

@@ -1,6 +1,6 @@
 import React from "react";
 
-const AddUsers = () => {
+const AddProducts = () => {
   return (
     <>
       <div className="content-wrapper">
@@ -10,7 +10,7 @@ const AddUsers = () => {
             <div className="row mb-2">
               <div className="col-sm-6 mt-2 mb-3">
                 <h1 className="m-0">
-                  <i className="fas fa-fw fa-user"></i>&nbsp;Add User
+                  <i className="fas fa-fw fa-user"></i>&nbsp;Add Products
                 </h1>
               </div>
               {/* <!-- /.col --> */}
@@ -55,4 +55,4 @@ const AddUsers = () => {
     </>
   );
 };
-export default AddUsers;
+export default AddProducts;
