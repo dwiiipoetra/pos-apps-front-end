@@ -71,7 +71,7 @@ const Users = () => {
                     <tbody>
                       {/* {json.map((userData, i) => ( */}
                       <tr>
-                        <td>{userData[i].id}</td>
+                        {/* <td>{userData[i].id}</td> */}
                         <td>John Doe</td>
                         <td>john.doe@gmail.com</td>
                         <td>Cashier</td>
