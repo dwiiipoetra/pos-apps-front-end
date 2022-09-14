@@ -1,13 +1,32 @@
-import React, { useEffect } from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { v4 } from "uuid"; //for map the data
 
 const Users = () => {
-  // useEffect(() => {
-  //   fetch("https://jsonplaceholder.typicode.com/users")
-  //     .then((res) => res.json())
-  //     .then((json) => console.log(json));
-  // }, []);
+  const [users, setUsers] = useState([]);
+  useEffect(() => {
+    axios.get("https://jsonplaceholder.typicode.com/users").then((res) => {
+      setUsers(res.data);
+    });
+  }, []);
+
+  const [search, setSearch] = useState("");
+  const [filteredResults, setFilteredResults] = useState([]);
+
+  const searchHandler = (searchValue) => {
+    setSearch(searchValue);
+    if (search === "") {
+      setFilteredResults(users);
+    } else {
+      const filteredUsers = users.filter((user) => {
+        return Object.values(user)
+          .join("")
+          .toLowerCase()
+          .includes(search.toLowerCase());
+      });
+      setFilteredResults(filteredUsers);
+    }
+  };
 
   return (
     <div className="content-wrapper">
@@ -37,6 +56,7 @@ const Users = () => {
                     placeholder="Search"
                     aria-label="Search"
                     aria-describedby="search-addon"
+                    onChange={(e) => searchHandler(e.target.value)}
                   />
                   <span className="input-group-text border-0" id="search-addon">
                     <i className="fas fa-search"></i>
@@ -69,28 +89,59 @@ const Users = () => {
                       </tr>
                     </thead>
                     <tbody>
-                      {/* {json.map((userData, i) => ( */}
-                      <tr>
-                        {/* <td>{userData[i].id}</td> */}
-                        <td>John Doe</td>
-                        <td>john.doe@gmail.com</td>
-                        <td>Cashier</td>
-                        <td>
-                          <div className="btn-group">
-                            <Link to="/users/edit" className="btn btn-primary">
-                              Edit
-                            </Link>
-                            <Link
-                              to="/users/delete"
-                              className="btn btn-danger"
-                              onClick={(e) => e.preventDefault()}
-                            >
-                              Delete
-                            </Link>
-                          </div>
-                        </td>
-                      </tr>
-                      {/* ))} */}
+                      {search.length > 1
+                        ? filteredResults.map((u) => (
+                            <tr key={u.id}>
+                              <td>{u.id}</td>
+                              <td>{u.name}</td>
+                              <td>{u.email}</td>
+                              <td>Dummy</td>
+                              <td>
+                                <div className="btn-group">
+                                  <Link
+                                    to="/users/edit"
+                                    className="btn btn-primary"
+                                    onClick={(e) => e.preventDefault()}
+                                  >
+                                    Edit
+                                  </Link>
+                                  <Link
+                                    to="/users/delete"
+                                    className="btn btn-danger"
+                                    onClick={(e) => e.preventDefault()}
+                                  >
+                                    Delete
+                                  </Link>
+                                </div>
+                              </td>
+                            </tr>
+                          ))
+                        : users.map((u) => (
+                            <tr key={u.id}>
+                              <td>{u.id}</td>
+                              <td>{u.name}</td>
+                              <td>{u.email}</td>
+                              <td>Dummy</td>
+                              <td>
+                                <div className="btn-group">
+                                  <Link
+                                    to="/users/edit"
+                                    className="btn btn-primary"
+                                    onClick={(e) => e.preventDefault()}
+                                  >
+                                    Edit
+                                  </Link>
+                                  <Link
+                                    to="/users/delete"
+                                    className="btn btn-danger"
+                                    onClick={(e) => e.preventDefault()}
+                                  >
+                                    Delete
+                                  </Link>
+                                </div>
+                              </td>
+                            </tr>
+                          ))}
                     </tbody>
                   </table>
                 </div>
