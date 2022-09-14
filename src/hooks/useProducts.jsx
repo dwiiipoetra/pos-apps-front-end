@@ -16,4 +16,18 @@ const useProducts = () => {
   return [data, getAllProducts];
 };
 
-export { useProducts };
+const detailProduct = () => {
+  const [data, setData] = useState([]);
+
+  const getProductDetails = async (product_id) => {
+    try {
+      const res = await api.getById(product_id);
+      setData(res.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  return [data, getProductDetails];
+};
+
+export { useProducts, detailProduct };

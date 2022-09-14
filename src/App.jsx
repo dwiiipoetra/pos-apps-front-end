@@ -46,7 +46,7 @@ function App() {
           <Route exact path="/orders/add-orders" element={<AddOrders />} />
           <Route exact path="/products" element={<Products />} />
           <Route exact path="/add-products" element={<AddProducts />} />
-          <Route exact path="/detail-products" element={<DetailProducts />} />
+          <Route exact path="/products/:product_id" element={<DetailProducts />} />
         </Routes>
         <Footer />
       </BrowserRouter>

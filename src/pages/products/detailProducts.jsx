@@ -1,6 +1,17 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useState } from "react";
+import { Link, useParams } from "react-router-dom";
+import { detailProduct } from "../../hooks/useProducts";
 const DetailProducts = () => {
+  const { product_id } = useParams();
+  const [data, getProductDetails] = detailProduct();
+
+  useEffect(() => {
+    if (data.length < 1) {
+      getProductDetails(product_id);
+    }
+  }, [data]);
+
   return (
     <>
       <div className="content-wrapper">
@@ -26,11 +37,11 @@ const DetailProducts = () => {
                     </div>
                     <div className="form-group col-md">
                       <label className="font-weight-bold">Name Product</label>
-                      <input autoComplete="off" type="text" name="nama" required className="form-control" />
+                      <input autoComplete="off" type="text" value={data?.name} name="nama" required className="form-control" />
                       <label className="font-weight-bold">Price</label>
-                      <input autoComplete="off" type="number" name="nama" required className="form-control" />
+                      <input autoComplete="off" type="number" value={data?.price} name="nama" required className="form-control" />
                       <label className="font-weight-bold">Stock</label>
-                      <input autoComplete="off" type="number" name="nama" required className="form-control" />
+                      <input autoComplete="off" type="number" value={data?.stock} name="nama" required className="form-control" />
                       <label class="form-label" for="customFile">
                         Edit Image
                       </label>

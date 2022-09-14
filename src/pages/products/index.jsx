@@ -67,16 +67,17 @@ const Products = () => {
                       {data?.map((items, index) => (
                         <tr key={index}>
                           <td>
+                            {/* <images src={[items.img]} /> */}
                             <img src="/img/hz.jpg" alt="huzelnut" width="50px" />
                           </td>
                           <td>{items.name}</td>
-                          <td>{items.price}</td>
+                          <td>Rp.{items.price}</td>
                           <td>
-                            <input type="number"></input>
+                            <input type="disabled" value={items.stock}></input>
                           </td>
                           <td>
                             <div>
-                              <Link to="/detail-products" className="btn btn-outline-success mr-2">
+                              <Link to={`/products/${items.product_id}`} className="btn btn-outline-success mr-2">
                                 <i className="fa fa-edit"></i> Edit
                               </Link>
                               <button type="button" class="btn btn-outline-danger">
