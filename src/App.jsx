@@ -7,6 +7,7 @@ import Footer from "../src/components/footer";
 // import pages
 import Users from "./pages/users/index";
 import AddUsers from "./pages/users/addUsers";
+import EditUsers from "./pages/users/editUsers";
 import Home from "./pages/dashboard";
 import Orders from "./pages/orders";
 import AddOrders from "./pages/orders/addOrders";
@@ -22,7 +23,8 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route exact path="/users" element={<Users />} />
-        <Route exact path="/users/add-users" element={<AddUsers />} />
+        <Route exact path="/users/add" element={<AddUsers />} />
+        <Route exact path="/users/edit/:id" element={<EditUsers />} />
         <Route exact path="/orders" element={<Orders />} />
         <Route exact path="/orders/add-orders" element={<AddOrders />} />
         <Route exact path="/products" element={<Products />} />
