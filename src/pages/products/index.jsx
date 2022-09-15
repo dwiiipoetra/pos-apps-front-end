@@ -1,6 +1,7 @@
 import { useProducts } from "../../hooks/useProducts";
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
+// import { Images } from "../../assets";
 const Products = () => {
   const [data, getAllProducts] = useProducts();
 
@@ -67,8 +68,9 @@ const Products = () => {
                       {data?.map((items, index) => (
                         <tr key={index}>
                           <td>
-                            {/* <images src={[items.img]} /> */}
-                            <img src="/img/hz.jpg" alt="huzelnut" width="50px" />
+                            {/* <img src={images[items.img]} /> */}
+                            <img src={"./img/" + items.img} alt="coffe" width="50px" />
+                            {/* <img src={Images[items.img]} alt="huzelnut" width="50px" /> */}
                           </td>
                           <td>{items.name}</td>
                           <td>Rp.{items.price}</td>

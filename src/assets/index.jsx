@@ -6,5 +6,5 @@ function importAll(r) {
   return images;
 }
 
-const images = importAll(require.context("./images", false, /\.(png|jpe?g|svg|gif)$/));
-export { images };
+const Images = importAll(require.context("./img", false, /\.(png|jpe?g|svg|gif)$/));
+export { Images };

@@ -33,15 +33,15 @@ const DetailProducts = () => {
                 <div className="card-body">
                   <div className="row">
                     <div className="col-4">
-                      <img src="/img/hz.jpg" alt="..." width="250px" />
+                      <img src={"/img/" + data?.img} alt="..." width="250px" />
                     </div>
                     <div className="form-group col-md">
                       <label className="font-weight-bold">Name Product</label>
-                      <input autoComplete="off" type="text" value={data?.name} name="nama" required className="form-control" />
+                      <input type="text" value={data?.name} name="nama" required className="form-control" />
                       <label className="font-weight-bold">Price</label>
-                      <input autoComplete="off" type="number" value={data?.price} name="nama" required className="form-control" />
+                      <input type="number" value={data?.price} name="nama" required className="form-control" />
                       <label className="font-weight-bold">Stock</label>
-                      <input autoComplete="off" type="number" value={data?.stock} name="nama" required className="form-control" />
+                      <input type="number" value={data?.stock} name="nama" required className="form-control" />
                       <label class="form-label" for="customFile">
                         Edit Image
                       </label>
