@@ -1,7 +1,16 @@
-import React from "react";
+import { useProducts } from "../../hooks/useProducts";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-
+// import { Images } from "../../assets";
 const Products = () => {
+  const [data, getAllProducts] = useProducts();
+
+  useEffect(() => {
+    if (data.length < 1) {
+      getAllProducts(1, 12, "", "");
+    }
+  }, [data.length, getAllProducts]);
+
   return (
     <div className="content-wrapper">
       {/* <!-- Content Header (Page header) --> */}
@@ -17,7 +26,7 @@ const Products = () => {
 
           <div className="row mb-2">
             <div className="col-md-6">
-              <Link to="add-products" className="btn btn-success">
+              <Link to="/add-products" className="btn btn-outline-success">
                 <i className="fa fa-plus"></i>&nbsp;&nbsp;Add products
               </Link>
             </div>
@@ -48,50 +57,38 @@ const Products = () => {
                   <table className="table table-hover text-nowrap">
                     <thead>
                       <tr>
-                        <th>Order ID</th>
-                        <th>Cashier</th>
-                        <th>Customer</th>
-                        <th>Transaction Date</th>
-                        <th>Payment</th>
+                        <th>Image</th>
+                        <th>Name Product</th>
+                        <th>Price</th>
+                        <th>Stock</th>
+                        <th>Action</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>183</td>
-                        <td>John Doe</td>
-                        <td>11-7-2014</td>
-                        <td>
-                          <span className="tag tag-success">Approved</span>
-                        </td>
-                        <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                      </tr>
-                      <tr>
-                        <td>219</td>
-                        <td>Alexander Pierce</td>
-                        <td>11-7-2014</td>
-                        <td>
-                          <span className="tag tag-warning">Pending</span>
-                        </td>
-                        <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                      </tr>
-                      <tr>
-                        <td>657</td>
-                        <td>Bob Doe</td>
-                        <td>11-7-2014</td>
-                        <td>
-                          <span className="tag tag-primary">Approved</span>
-                        </td>
-                        <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                      </tr>
-                      <tr>
-                        <td>175</td>
-                        <td>Mike Doe</td>
-                        <td>11-7-2014</td>
-                        <td>
-                          <span className="tag tag-danger">Denied</span>
-                        </td>
-                        <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                      </tr>
+                      {data?.map((items, index) => (
+                        <tr key={index}>
+                          <td>
+                            {/* <img src={images[items.img]} /> */}
+                            <img src={"./img/" + items.img} alt="coffe" width="50px" />
+                            {/* <img src={Images[items.img]} alt="huzelnut" width="50px" /> */}
+                          </td>
+                          <td>{items.name}</td>
+                          <td>Rp.{items.price}</td>
+                          <td>
+                            <input type="disabled" value={items.stock}></input>
+                          </td>
+                          <td>
+                            <div>
+                              <Link to={`/products/${items.product_id}`} className="btn btn-outline-success mr-2">
+                                <i className="fa fa-edit"></i> Edit
+                              </Link>
+                              <button type="button" class="btn btn-outline-danger">
+                                <i className="fa fa-trash-alt"></i> Delete
+                              </button>
+                            </div>
+                          </td>
+                        </tr>
+                      ))}
                     </tbody>
                   </table>
                 </div>

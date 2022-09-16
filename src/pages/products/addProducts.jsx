@@ -1,6 +1,38 @@
 import React from "react";
+import { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import swal from "sweetalert";
 
 const AddProducts = () => {
+  const [img, setImg] = useState();
+  const [name, setName] = useState();
+  const [price, setPrice] = useState();
+  const [stock, setStock] = useState();
+
+  const handlerSubmit = (e) => {
+    e.preventDefault();
+    // const navigate = useNavigate();
+
+    const data = {
+      img,
+      name,
+      price,
+      stock,
+    };
+
+    const res = axios
+      .post("https://6305cec7dde73c0f844bca85.mockapi.io/products", data)
+      .then(function (response) {
+        swal("product telah ditambahkan", "success");
+        // navigate("/");
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    console.log("ini data", data);
+  };
+
   return (
     <>
       <div className="content-wrapper">
@@ -18,28 +50,25 @@ const AddProducts = () => {
             {/* <!-- /.row --> */}
 
             <div className="card shadow mb-4">
-              <form method="post" id="form" role="form" encType="multipart/form-data">
+              <form>
                 <div className="card-body">
                   <div className="row">
                     <div className="form-group col-md">
-                      <label className="font-weight-bold">Name</label>
-                      <input autoComplete="off" type="text" name="nama" required className="form-control" />
-                      <label className="font-weight-bold">Role</label>
-                      <select name="role" className="form-control" required>
-                        <option value="">Choose Role</option>
-                        <option value="kasir">Cashier</option>
-                        <option value="gudang">Warehouse</option>
-                      </select>
-                      <label className="font-weight-bold">Email</label>
-                      <input autoComplete="off" type="email" name="nama" required className="form-control" />
-                      <label className="font-weight-bold">Password</label>
-                      <input autoComplete="off" type="password" name="nama" required className="form-control" />
+                      <label className="font-weight-bold">Name Product</label>
+                      <input autoComplete="off" type="text" value={name} onChange={(e) => setName(e.target.value)} required className="form-control" name="name" />
+                      <label className="font-weight-bold">Price</label>
+                      <input autoComplete="off" type="number" value={price} onChange={(e) => setPrice(e.target.value)} name="price" className="form-control" />
+                      <label className="font-weight-bold">Stock</label>
+                      <input autoComplete="off" type="number" value={stock} onChange={(e) => setStock(e.target.value)} name="stock" required className="form-control" />
+                      <label htmlFor="formFileMultiple" class="form-label">
+                        Upload Images
+                      </label>
+                      <input class="form-control" type="file" value={img} onChange={(e) => setImg(e.target.value)} id="formFileMultiple" multiple />
                     </div>
                   </div>
                 </div>
-
                 <div className="card-footer text-right">
-                  <button type="submit" className="btn btn-success">
+                  <button type="submit" onClick={handlerSubmit} className="btn btn-success">
                     <i className="fa fa-save"></i> Save
                   </button>
                   <button type="reset" className="btn btn-info">
