@@ -1,7 +1,9 @@
 import { useProducts } from "../../hooks/useProducts";
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-// import { Images } from "../../assets";
+import api from "../../api";
+import swal from "sweetalert";
+// import { images } from "../../assets";
 const Products = () => {
   const [data, getAllProducts] = useProducts();
 
@@ -10,6 +12,16 @@ const Products = () => {
       getAllProducts(1, 12, "", "");
     }
   }, [data.length, getAllProducts]);
+
+  const deleteProduct = async (product_id) => {
+    try {
+      const res = await api.delete(product_id);
+      getAllProducts();
+      swal("product telah dihapus", "success");
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <div className="content-wrapper">
@@ -26,7 +38,7 @@ const Products = () => {
 
           <div className="row mb-2">
             <div className="col-md-6">
-              <Link to="/add-products" className="btn btn-outline-success">
+              <Link to="/products/add" className="btn btn-outline-success">
                 <i className="fa fa-plus"></i>&nbsp;&nbsp;Add products
               </Link>
             </div>
@@ -69,8 +81,8 @@ const Products = () => {
                         <tr key={index}>
                           <td>
                             {/* <img src={images[items.img]} /> */}
-                            <img src={"./img/" + items.img} alt="coffe" width="50px" />
-                            {/* <img src={Images[items.img]} alt="huzelnut" width="50px" /> */}
+                            <img src={"/img/" + items.img} alt="coffe" width="50px" />
+                            {/* <img src={images[items.img]} alt="huzelnut" width="50px" /> */}
                           </td>
                           <td>{items.name}</td>
                           <td>Rp.{items.price}</td>
@@ -82,7 +94,7 @@ const Products = () => {
                               <Link to={`/products/${items.product_id}`} className="btn btn-outline-success mr-2">
                                 <i className="fa fa-edit"></i> Edit
                               </Link>
-                              <button type="button" class="btn btn-outline-danger">
+                              <button onClick={() => deleteProduct(items.product_id)} type="button" class="btn btn-outline-danger">
                                 <i className="fa fa-trash-alt"></i> Delete
                               </button>
                             </div>

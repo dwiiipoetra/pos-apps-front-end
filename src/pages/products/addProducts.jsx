@@ -1,19 +1,23 @@
 import React from "react";
 import { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 import swal from "sweetalert";
+import { useNavigate } from "react-router-dom";
 
 const AddProducts = () => {
+  const navigate = useNavigate();
   const [img, setImg] = useState();
   const [name, setName] = useState();
   const [price, setPrice] = useState();
   const [stock, setStock] = useState();
 
-  const handlerSubmit = (e) => {
-    e.preventDefault();
-    // const navigate = useNavigate();
+  const uploadImage = () => {
+    console.log(e.target.files);
+    setImg(e.target.files[0]);
+  };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
     const data = {
       img,
       name,
@@ -25,7 +29,7 @@ const AddProducts = () => {
       .post("https://6305cec7dde73c0f844bca85.mockapi.io/products", data)
       .then(function (response) {
         swal("product telah ditambahkan", "success");
-        // navigate("/");
+        navigate("/products");
       })
       .catch(function (error) {
         console.log(error);
@@ -63,12 +67,12 @@ const AddProducts = () => {
                       <label htmlFor="formFileMultiple" class="form-label">
                         Upload Images
                       </label>
-                      <input class="form-control" type="file" value={img} onChange={(e) => setImg(e.target.value)} id="formFileMultiple" multiple />
+                      <input class="form-control" type="file" value={img} onChange={uploadImage} id="formFileMultiple" multiple />
                     </div>
                   </div>
                 </div>
                 <div className="card-footer text-right">
-                  <button type="submit" onClick={handlerSubmit} className="btn btn-success">
+                  <button type="submit" onClick={handleSubmit} className="btn btn-success">
                     <i className="fa fa-save"></i> Save
                   </button>
                   <button type="reset" className="btn btn-info">

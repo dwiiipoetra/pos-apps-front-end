@@ -15,7 +15,6 @@ const useProducts = () => {
 
   return [data, getAllProducts];
 };
-
 const detailProduct = () => {
   const [data, setData] = useState([]);
 
