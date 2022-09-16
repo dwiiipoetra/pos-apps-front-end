@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import swal from "sweetalert";
 
 const AddProducts = () => {
   const [img, setImg] = useState();
@@ -11,7 +12,7 @@ const AddProducts = () => {
 
   const handlerSubmit = (e) => {
     e.preventDefault();
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     const data = {
       img,
@@ -23,8 +24,8 @@ const AddProducts = () => {
     const res = axios
       .post("https://6305cec7dde73c0f844bca85.mockapi.io/products", data)
       .then(function (response) {
-        alert("product telah ditambahkan");
-        navigate("/");
+        swal("product telah ditambahkan", "success");
+        // navigate("/");
       })
       .catch(function (error) {
         console.log(error);
