@@ -12,6 +12,7 @@ import Home from "./pages/dashboard";
 import Orders from "./pages/orders";
 import AddOrders from "./pages/orders/addOrders";
 import Products from "./pages/products";
+import Carts from "./pages/carts";
 import AddProducts from "./pages/products/addProducts";
 import Login from "./pages/login";
 import axios from "axios";
@@ -46,6 +47,7 @@ function App() {
           <Route exact path="/users/edit/:id" element={<EditUsers />} />
           <Route exact path="/orders" element={<Orders />} />
           <Route exact path="/orders/add" element={<AddOrders />} />
+          <Route exact path="/carts" element={<Carts />} />
           <Route exact path="/products" element={<Products />} />
           <Route exact path="/products/add" element={<AddProducts />} />
           <Route exact path="/products/:product_id" element={<DetailProducts />} />
