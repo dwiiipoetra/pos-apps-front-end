@@ -19,14 +19,14 @@ import axios from "axios";
 import DetailProducts from "./pages/products/detailProducts";
 
 function App() {
-  let user;
+  // let user;
   // const getUser = async () => {
   //   user = await axios.get("https://631862c8ece2736550c85c60.mockapi.io/users");
   //   console.log("user", user);
   //   return user;
   // };
   // getUser();
-  console.log("user2", user);
+  // console.log("user2", user);
   return (
     <div className="wrapper">
       <BrowserRouter>
@@ -50,7 +50,11 @@ function App() {
           <Route exact path="/carts" element={<Carts />} />
           <Route exact path="/products" element={<Products />} />
           <Route exact path="/products/add" element={<AddProducts />} />
-          <Route exact path="/products/:product_id" element={<DetailProducts />} />
+          <Route
+            exact
+            path="/products/:product_id"
+            element={<DetailProducts />}
+          />
         </Routes>
         <Footer />
       </BrowserRouter>

@@ -20,7 +20,8 @@ const Orders = () => {
           <div className="row mb-2">
             <div className="col-sm-6 mt-2 mb-3">
               <h1 className="m-0">
-                <i class="nav-icon fas fa-clipboard-list"></i>&nbsp;List Orders
+                <i className="nav-icon fas fa-clipboard-list"></i>&nbsp;List
+                Orders
               </h1>
             </div>
           </div>
@@ -85,7 +86,7 @@ const Orders = () => {
                           </span>
                         </td>
                         <td>
-                          <span class="badge bg-success">Success</span>
+                          <span className="badge bg-success">Success</span>
                         </td>
                         <td>
                           <Link

@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
+import CardAddOrders from "./components/cardAddOrders";
 
 const AddOrders = () => {
   const [products, setProducts] = useState([]);
@@ -7,11 +8,15 @@ const AddOrders = () => {
 
   const fetchProducts = async () => {
     setLoading(true);
-    const response = await axios.get(
-      "https://630331acc6dda4f287c4e755.mockapi.io/api/v1/products"
-    );
-    setProducts(await response.data);
-    setLoading(false);
+    try {
+      const response = await axios.get(
+        "https://630331acc6dda4f287c4e755.mockapi.io/api/v1/products"
+      );
+      setProducts(await response.data);
+      setLoading(false);
+    } catch (err) {
+      throw new Error("unable to fetch data");
+    }
   };
 
   useEffect(() => {
@@ -88,40 +93,23 @@ const AddOrders = () => {
             ) : (
               <div className="row row-cols-2 row-cols-md-6 mb-4 mt-4">
                 {search.length > 1
-                  ? filteredResults.map((p) => (
-                      <div className="col mb-4" key={p.id}>
-                        <div className="card h-100">
-                          <img
-                            src={p.image}
-                            className="card-img-top"
-                            alt={p.name}
-                          />
-                          <div className="card-body">
-                            <h5 className="card-title">{p.name}</h5>
-                            <p className="card-text">Stock ({p.stock})</p>
-                          </div>
-                        </div>
-                      </div>
+                  ? filteredResults.map((p, i) => (
+                      <CardAddOrders
+                        key={i}
+                        name={p.name}
+                        image={p.image}
+                        stock={p.stock}
+                        item={p}
+                      />
                     ))
-                  : products.map((p) => (
-                      <div className="col mb-4" key={p.id}>
-                        <div className="card h-100">
-                          <img
-                            src={p.image}
-                            className="card-img-top"
-                            alt={p.name}
-                          />
-                          <div className="card-body">
-                            <h5 className="card-title">{p.name}</h5>
-                            <p className="card-text">Stock ({p.stock})</p>
-                          </div>
-                          <div className="card-footer">
-                            <button className="btn btn-outline-info">
-                              <i className="fas fa-cart-plus"></i> Add to cart
-                            </button>
-                          </div>
-                        </div>
-                      </div>
+                  : products.map((p, i) => (
+                      <CardAddOrders
+                        key={i}
+                        name={p.name}
+                        image={p.image}
+                        stock={p.stock}
+                        item={p}
+                      />
                     ))}
               </div>
             )}
