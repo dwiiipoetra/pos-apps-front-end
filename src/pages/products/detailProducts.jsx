@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { detailProduct } from "../../hooks/useProducts";
 const DetailProducts = () => {

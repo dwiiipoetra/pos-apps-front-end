@@ -19,10 +19,7 @@ const Users = () => {
       setFilteredResults(users);
     } else {
       const filteredUsers = users.filter((user) => {
-        return Object.values(user)
-          .join("")
-          .toLowerCase()
-          .includes(search.toLowerCase());
+        return Object.values(user).join("").toLowerCase().includes(search.toLowerCase());
       });
       setFilteredResults(filteredUsers);
     }
@@ -50,14 +47,7 @@ const Users = () => {
             <div className="col-md-6">
               <ol className="breadcrumb float-sm-right">
                 <div className="input-group rounded">
-                  <input
-                    type="search"
-                    className="form-control rounded"
-                    placeholder="Search"
-                    aria-label="Search"
-                    aria-describedby="search-addon"
-                    onChange={(e) => searchHandler(e.target.value)}
-                  />
+                  <input type="search" className="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" onChange={(e) => searchHandler(e.target.value)} />
                   <span className="input-group-text border-0" id="search-addon">
                     <i className="fas fa-search"></i>
                   </span>
@@ -98,18 +88,10 @@ const Users = () => {
                               <td>Dummy</td>
                               <td>
                                 <div className="btn-group">
-                                  <Link
-                                    to="/users/edit"
-                                    className="btn btn-primary"
-                                    onClick={(e) => e.preventDefault()}
-                                  >
+                                  <Link to="/users/edit" className="btn btn-primary" onClick={(e) => e.preventDefault()}>
                                     Edit
                                   </Link>
-                                  <Link
-                                    to="/users/delete"
-                                    className="btn btn-danger"
-                                    onClick={(e) => e.preventDefault()}
-                                  >
+                                  <Link to="/users/delete" className="btn btn-danger" onClick={(e) => e.preventDefault()}>
                                     Delete
                                   </Link>
                                 </div>
@@ -124,18 +106,10 @@ const Users = () => {
                               <td>Dummy</td>
                               <td>
                                 <div className="btn-group">
-                                  <Link
-                                    to="/users/edit"
-                                    className="btn btn-primary"
-                                    onClick={(e) => e.preventDefault()}
-                                  >
+                                  <Link to="/users/edit" className="btn btn-primary" onClick={(e) => e.preventDefault()}>
                                     Edit
                                   </Link>
-                                  <Link
-                                    to="/users/delete"
-                                    className="btn btn-danger"
-                                    onClick={(e) => e.preventDefault()}
-                                  >
+                                  <Link to="/users/delete" className="btn btn-danger" onClick={(e) => e.preventDefault()}>
                                     Delete
                                   </Link>
                                 </div>
