@@ -16,7 +16,11 @@ const Sidebar = () => {
           {/* <!-- Sidebar user panel (optional) --> */}
           <div className="user-panel mt-3 pb-3 mb-3 d-flex">
             <div className="image">
-              <img src="/img/user2-160x160.jpg" className="img-circle elevation-2" alt="User Image" />
+              {/* <img
+                src="/img/user2-160x160.jpg"
+                className="img-circle elevation-2"
+                alt="User Image"
+              /> */}
             </div>
             <div className="info">
               <Link to="/home" className="d-block">
@@ -35,15 +39,21 @@ const Sidebar = () => {
                 </Link>
               </li>
               <li className="nav-item ">
-                <Link to="/orders" className="nav-link">
-                  <i className="nav-icon fas fa-shopping-cart"></i>
-                  <p>Orders</p>
-                </Link>
-              </li>
-              <li className="nav-item ">
                 <Link to="/products" className="nav-link">
                   <i className="nav-icon fas fa-tag"></i>
                   <p>Products</p>
+                </Link>
+              </li>
+              <li className="nav-item ">
+                <Link to="/carts" className="nav-link">
+                  <i className="nav-icon fas fa-shopping-cart"></i>
+                  <p>Carts</p>
+                </Link>
+              </li>
+              <li className="nav-item ">
+                <Link to="/orders" className="nav-link">
+                  <i className="nav-icon fas fa-clipboard-list"></i>
+                  <p>Orders</p>
                 </Link>
               </li>
               <li className="nav-item ">

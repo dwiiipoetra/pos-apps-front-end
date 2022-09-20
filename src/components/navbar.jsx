@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
+import { Link } from "react-router-dom";
+import CartContext from "../context/cart/cartContext";
 
 const Navbar = () => {
+  const cartItems = useContext(CartContext);
   return (
     <>
       {/* <!-- Preloader --> */}
@@ -29,9 +32,10 @@ const Navbar = () => {
             </a>
           </li>
           <li className="nav-item d-none d-sm-inline-block">
-            <a href="index.html" className="nav-link">
+            <Link to="/" className="nav-link">
               Home
-            </a>
+              {/* <p>Test{cartItems.length}</p> */}
+            </Link>
           </li>
         </ul>
       </nav>

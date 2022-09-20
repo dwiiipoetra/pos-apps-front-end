@@ -8,6 +8,7 @@ import Home from "./pages/dashboard";
 import Orders from "./pages/orders";
 import AddOrders from "./pages/orders/addOrders";
 import Products from "./pages/products";
+import Carts from "./pages/carts";
 import AddProducts from "./pages/products/addProducts";
 import Login from "./pages/login";
 import Parent from "./components/parent";
