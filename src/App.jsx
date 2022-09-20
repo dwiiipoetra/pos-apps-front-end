@@ -10,8 +10,8 @@ import AddOrders from "./pages/orders/addOrders";
 import Products from "./pages/products";
 import AddProducts from "./pages/products/addProducts";
 import Login from "./pages/login";
-import EditProducts from "./pages/products/editProducts";
 import Parent from "./components/parent";
+import DetailProducts from "./pages/products/detailProducts";
 
 function App() {
   return (
@@ -97,7 +97,7 @@ function App() {
             path="/products/:product_id"
             element={
               <Parent>
-                <EditProducts />
+                <DetailProducts />
               </Parent>
             }
           />

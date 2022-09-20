@@ -61,17 +61,15 @@ const Login = () => {
                 </div>
               </div>
               <div className="row">
-                <div className="col-4">
-                  <button type="submit" onClick={handleApi} className="btn btn-primary btn-block">
-                    Sign In
-                  </button>
-                </div>
+                <button type="submit" onClick={handleApi} className="btn btn-primary btn-block">
+                  Sign In
+                </button>
               </div>
               <div className="row">
                 <div className="col-12">
-                  <p>
+                  {/* <p>
                     <a href="forgot-password.html">I forgot my password</a>
-                  </p>
+                  </p> */}
                 </div>
               </div>
             </form>

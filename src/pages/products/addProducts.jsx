@@ -3,7 +3,7 @@ import { useState } from "react";
 import axios from "axios";
 import swal from "sweetalert";
 import { useNavigate } from "react-router-dom";
-
+import { Link } from "react-router-dom";
 const AddProducts = () => {
   const navigate = useNavigate();
   const [img, setImg] = useState();
@@ -80,11 +80,11 @@ const AddProducts = () => {
                   </div>
                 </div>
                 <div className="card-footer text-right">
-                  <button type="submit" onClick={handleSubmit} className="btn btn-success">
+                  <Link to="/products" type="reset" className="btn btn-outline-secondary mr-2">
+                    <i className="fa fa-long-arrow-alt-left"></i> Back
+                  </Link>
+                  <button type="submit" onClick={handleSubmit} className="btn btn-outline-success">
                     <i className="fa fa-save"></i> Save
-                  </button>
-                  <button type="reset" className="btn btn-info">
-                    <i className="fa fa-sync-alt"></i> Reset
                   </button>
                 </div>
               </form>

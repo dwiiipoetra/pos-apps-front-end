@@ -22,6 +22,11 @@ const Products = () => {
     }
   };
 
+  // handlerEdit = ((e)=>{
+  //   let dataId = preseInt(e.target.value)
+
+  // })
+
   useEffect(() => {
     if (data.length < 1) {
       getAllProducts(1, 12, "", "");
@@ -104,7 +109,7 @@ const Products = () => {
                                   <Link to={`/products/${items.product_id}`} className="btn btn-outline-success mr-2">
                                     <i className="fa fa-edit"></i> Edit
                                   </Link>
-                                  <button onClick={() => deleteProduct(items.product_id)} type="button" class="btn btn-outline-danger">
+                                  <button onClick={() => deleteProduct(items.product_id)} type="button" className="btn btn-outline-danger">
                                     <i className="fa fa-trash-alt"></i> Delete
                                   </button>
                                 </div>
@@ -128,7 +133,7 @@ const Products = () => {
                                   <Link to={`/products/${items.product_id}`} className="btn btn-outline-success mr-2">
                                     <i className="fa fa-edit"></i> Edit
                                   </Link>
-                                  <button onClick={() => deleteProduct(items.product_id)} type="button" class="btn btn-outline-danger">
+                                  <button onClick={() => deleteProduct(items.product_id)} type="button" className="btn btn-outline-danger">
                                     <i className="fa fa-trash-alt"></i> Delete
                                   </button>
                                 </div>
