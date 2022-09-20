@@ -1,6 +1,46 @@
-import React from "react";
+import axios from "axios";
+import React, { useState, useEffect } from "react";
+import CardAddOrders from "./components/cardAddOrders";
 
 const AddOrders = () => {
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  const fetchProducts = async () => {
+    setLoading(true);
+    try {
+      const response = await axios.get(
+        "https://630331acc6dda4f287c4e755.mockapi.io/api/v1/products"
+      );
+      setProducts(await response.data);
+      setLoading(false);
+    } catch (err) {
+      throw new Error("unable to fetch data");
+    }
+  };
+
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+
+  const [search, setSearch] = useState("");
+  const [filteredResults, setFilteredResults] = useState([]);
+
+  const searchHandler = (searchValue) => {
+    setSearch(searchValue);
+    if (search === "") {
+      setFilteredResults(products);
+    } else {
+      const filteredProducts = products.filter((product) => {
+        return Object.values(product)
+          .join("")
+          .toLowerCase()
+          .includes(search.toLowerCase());
+      });
+      setFilteredResults(filteredProducts);
+    }
+  };
+
   return (
     <>
       <div className="content-wrapper">
@@ -10,44 +50,69 @@ const AddOrders = () => {
             <div className="row mb-2">
               <div className="col-sm-6 mt-2 mb-3">
                 <h1 className="m-0">
-                  <i className="fas fa-fw fa-user"></i>&nbsp;Add Orders
+                  <i className="nav-icon fas fa-clipboard-list"></i>&nbsp;Add
+                  Orders
                 </h1>
               </div>
               {/* <!-- /.col --> */}
             </div>
             {/* <!-- /.row --> */}
-
-            <div className="card shadow mb-4">
-              <form method="post" id="form" role="form" encType="multipart/form-data">
-                <div className="card-body">
-                  <div className="row">
-                    <div className="form-group col-md">
-                      <label className="font-weight-bold">Name</label>
-                      <input autoComplete="off" type="text" name="nama" required className="form-control" />
-                      <label className="font-weight-bold">Role</label>
-                      <select name="role" className="form-control" required>
-                        <option value="">Choose Role</option>
-                        <option value="kasir">Cashier</option>
-                        <option value="gudang">Warehouse</option>
-                      </select>
-                      <label className="font-weight-bold">Email</label>
-                      <input autoComplete="off" type="email" name="nama" required className="form-control" />
-                      <label className="font-weight-bold">Password</label>
-                      <input autoComplete="off" type="password" name="nama" required className="form-control" />
-                    </div>
+            <div className="row mb-2">
+              <div className="col-md-6"></div>
+              <div className="col-md-6">
+                <ol className="breadcrumb float-sm-right">
+                  <div className="input-group rounded">
+                    <input
+                      type="search"
+                      className="form-control rounded"
+                      placeholder="Search"
+                      aria-label="Search"
+                      aria-describedby="search-addon"
+                      onChange={(e) => searchHandler(e.target.value)}
+                    />
+                    <span
+                      className="input-group-text border-0"
+                      id="search-addon"
+                    >
+                      <i className="fas fa-search"></i>
+                    </span>
                   </div>
-                </div>
-
-                <div className="card-footer text-right">
-                  <button type="submit" className="btn btn-success">
-                    <i className="fa fa-save"></i> Save
-                  </button>
-                  <button type="reset" className="btn btn-info">
-                    <i className="fa fa-sync-alt"></i> Reset
-                  </button>
-                </div>
-              </form>
+                </ol>
+              </div>
             </div>
+
+            {loading ? (
+              <div className="row">
+                <div className="col-12 text-center mt-4 mb-4">
+                  <h5>Loading data...</h5>
+                  <span className="spinner-grow text-info mr-2"></span>
+                  <span className="spinner-grow text-info mr-2"></span>
+                  <span className="spinner-grow text-info"></span>
+                </div>
+              </div>
+            ) : (
+              <div className="row row-cols-2 row-cols-md-6 mb-4 mt-4">
+                {search.length > 1
+                  ? filteredResults.map((p, i) => (
+                      <CardAddOrders
+                        key={i}
+                        name={p.name}
+                        image={p.image}
+                        stock={p.stock}
+                        item={p}
+                      />
+                    ))
+                  : products.map((p, i) => (
+                      <CardAddOrders
+                        key={i}
+                        name={p.name}
+                        image={p.image}
+                        stock={p.stock}
+                        item={p}
+                      />
+                    ))}
+              </div>
+            )}
           </div>
           {/* <!-- /.container-fluid --> */}
         </div>

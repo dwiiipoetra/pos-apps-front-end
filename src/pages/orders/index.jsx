@@ -1,6 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+const showFormattedDate = (date) => {
+  const options = {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  };
+  return new Date(date).toLocaleDateString("id-ID", options);
+};
+
 const Orders = () => {
   return (
     <div className="content-wrapper">
@@ -10,21 +20,28 @@ const Orders = () => {
           <div className="row mb-2">
             <div className="col-sm-6 mt-2 mb-3">
               <h1 className="m-0">
-                <i className="nav-icon fas fa-user"></i>&nbsp;Orders
+                <i className="nav-icon fas fa-clipboard-list"></i>&nbsp;List
+                Orders
               </h1>
             </div>
           </div>
 
           <div className="row mb-2">
             <div className="col-md-6">
-              <Link to="add-orders" className="btn btn-success">
-                <i className="fa fa-plus"></i>&nbsp;&nbsp;Add orders
+              <Link to="/orders/add" className="btn btn-outline-info">
+                <i className="fa fa-plus"></i>&nbsp;&nbsp;Add New
               </Link>
             </div>
             <div className="col-md-6">
               <ol className="breadcrumb float-sm-right">
                 <div className="input-group rounded">
-                  <input type="search" className="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+                  <input
+                    type="search"
+                    className="form-control rounded"
+                    placeholder="Search"
+                    aria-label="Search"
+                    aria-describedby="search-addon"
+                  />
                   <span className="input-group-text border-0" id="search-addon">
                     <i className="fas fa-search"></i>
                   </span>
@@ -51,46 +68,40 @@ const Orders = () => {
                         <th>Order ID</th>
                         <th>Cashier</th>
                         <th>Customer</th>
+                        <th>Amount</th>
                         <th>Transaction Date</th>
                         <th>Payment</th>
+                        <th>Action</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr>
-                        <td>183</td>
+                        <td>AE-183-8748</td>
                         <td>John Doe</td>
-                        <td>11-7-2014</td>
+                        <td>Dwi Putra</td>
+                        <td>Rp 450.000,00</td>
                         <td>
-                          <span className="tag tag-success">Approved</span>
+                          <span className="tag tag-success">
+                            {showFormattedDate(Date())}
+                          </span>
                         </td>
-                        <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                      </tr>
-                      <tr>
-                        <td>219</td>
-                        <td>Alexander Pierce</td>
-                        <td>11-7-2014</td>
                         <td>
-                          <span className="tag tag-warning">Pending</span>
+                          <span className="badge bg-success">Success</span>
                         </td>
-                        <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                      </tr>
-                      <tr>
-                        <td>657</td>
-                        <td>Bob Doe</td>
-                        <td>11-7-2014</td>
                         <td>
-                          <span className="tag tag-primary">Approved</span>
+                          <Link
+                            to="/orders/view/id"
+                            className="btn btn-outline-primary mr-2"
+                          >
+                            <i className="fa fa-eye"></i> View
+                          </Link>
+                          <Link
+                            to="/orders/edit/id"
+                            className="btn btn-outline-success"
+                          >
+                            <i className="fa fa-edit"></i> Edit
+                          </Link>
                         </td>
-                        <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                      </tr>
-                      <tr>
-                        <td>175</td>
-                        <td>Mike Doe</td>
-                        <td>11-7-2014</td>
-                        <td>
-                          <span className="tag tag-danger">Denied</span>
-                        </td>
-                        <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
                       </tr>
                     </tbody>
                   </table>
@@ -102,7 +113,6 @@ const Orders = () => {
         </div>
         {/* <!-- /.container-fluid --> */}
       </section>
-      {/* <!-- /.content --> */}
     </div>
   );
 };
