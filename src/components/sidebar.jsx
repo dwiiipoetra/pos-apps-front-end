@@ -1,19 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
 const Sidebar = () => {
   return (
     <>
       {/* <!-- Main Sidebar Container --> */}
       <aside className="main-sidebar sidebar-dark-primary elevation-4">
         {/* <!-- Brand Logo --> */}
-        <Link to="/" className="brand-link">
-          <img
-            src="/img/AdminLTELogo.png"
-            alt="AdminLTE Logo"
-            className="brand-image img-circle elevation-3"
-            style={{ opacity: ".8" }}
-          />
+        <Link to="/home" className="brand-link">
+          <img src="/img/AdminLTELogo.png" alt="AdminLTE Logo" className="brand-image img-circle elevation-3" style={{ opacity: ".8" }} />
           <span className="brand-text font-weight-light">CAP - POS APP</span>
         </Link>
 
@@ -29,7 +23,7 @@ const Sidebar = () => {
               /> */}
             </div>
             <div className="info">
-              <Link to="/" className="d-block">
+              <Link to="/home" className="d-block">
                 John Doe
               </Link>
             </div>
@@ -37,14 +31,9 @@ const Sidebar = () => {
 
           {/* <!-- Sidebar Menu --> */}
           <nav className="mt-2">
-            <ul
-              className="nav nav-pills nav-sidebar flex-column"
-              data-widget="treeview"
-              role="menu"
-              data-accordion="false"
-            >
+            <ul className="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
               <li className="nav-item ">
-                <Link to="/" className="nav-link">
+                <Link to="/home" className="nav-link">
                   <i className="nav-icon fas fa-tachometer-alt"></i>
                   <p>Dashboard</p>
                 </Link>

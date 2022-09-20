@@ -1,18 +1,23 @@
 import React from "react";
 import { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 import swal from "sweetalert";
-
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 const AddProducts = () => {
+  const navigate = useNavigate();
   const [img, setImg] = useState();
   const [name, setName] = useState();
   const [price, setPrice] = useState();
   const [stock, setStock] = useState();
 
-  const handlerSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // const navigate = useNavigate();
+    // const formData = new FormData();
+    // formData.append("img", img);
+    // formData.append("name", name);
+    // formData.append("price", price);
+    // formData.append("stock", stock);
 
     const data = {
       img,
@@ -22,15 +27,22 @@ const AddProducts = () => {
     };
 
     const res = axios
-      .post("https://6305cec7dde73c0f844bca85.mockapi.io/products", data)
+      .post("https://6305cec7dde73c0f844bca85.mockapi.io/products", data, {
+        "Content-Type": "multipart/form-data",
+      })
       .then(function (response) {
         swal("product telah ditambahkan", "success");
-        // navigate("/");
+        navigate("/products");
       })
       .catch(function (error) {
         console.log(error);
       });
     console.log("ini data", data);
+  };
+
+  const handleImg = (e) => {
+    setImg(e.target.files[0]);
+    console.log("ini gambar", setImg);
   };
 
   return (
@@ -63,16 +75,16 @@ const AddProducts = () => {
                       <label htmlFor="formFileMultiple" class="form-label">
                         Upload Images
                       </label>
-                      <input class="form-control" type="file" value={img} onChange={(e) => setImg(e.target.value)} id="formFileMultiple" multiple />
+                      <input class="form-control" type="file" onChange={handleImg} id="formFileMultiple" multiple />
                     </div>
                   </div>
                 </div>
                 <div className="card-footer text-right">
-                  <button type="submit" onClick={handlerSubmit} className="btn btn-success">
+                  <Link to="/products" type="reset" className="btn btn-outline-secondary mr-2">
+                    <i className="fa fa-long-arrow-alt-left"></i> Back
+                  </Link>
+                  <button type="submit" onClick={handleSubmit} className="btn btn-outline-success">
                     <i className="fa fa-save"></i> Save
-                  </button>
-                  <button type="reset" className="btn btn-info">
-                    <i className="fa fa-sync-alt"></i> Reset
                   </button>
                 </div>
               </form>
