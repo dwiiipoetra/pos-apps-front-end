@@ -3,7 +3,6 @@ import axios from "axios";
 const ROOT_URL = "https://6327f60f5731f3db99613806.mockapi.io/users";
 
 export async function loginUser(dispatch, loginPayLoad) {
-
   console.log(dispatch, loginPayLoad);
 
   try {
@@ -21,4 +20,10 @@ export async function loginUser(dispatch, loginPayLoad) {
     dispatch({ type: "LOGIN_ERROR", error: error });
     console.log("ini error", error);
   }
+}
+
+export async function logout(dispatch) {
+  dispatch({ type: "LOGOUT" });
+  localStorage.removeItem("currentUser");
+  localStorage.removeItem("token");
 }

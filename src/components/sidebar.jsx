@@ -1,6 +1,16 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuthDispatch, logout } from "../context/login";
+
 const Sidebar = () => {
+  const navigate = useNavigate();
+  const dispatch = useAuthDispatch();
+
+  const handleLogout = () => {
+    logout(dispatch);
+    navigate("/");
+  };
+
   return (
     <>
       {/* <!-- Main Sidebar Container --> */}
@@ -60,6 +70,12 @@ const Sidebar = () => {
                 <Link to="/users" className="nav-link">
                   <i className="nav-icon fas fa-user"></i>
                   <p>Users</p>
+                </Link>
+              </li>
+              <li className="nav-item " onClick={handleLogout}>
+                <Link to="/users" className="nav-link">
+                  <i className="nav-icon fas fa-sign-out-alt"></i>
+                  <p>Logout</p>
                 </Link>
               </li>
             </ul>
