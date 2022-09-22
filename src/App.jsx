@@ -102,6 +102,15 @@ function App() {
               </Parent>
             }
           />
+          <Route
+            exact
+            path="/carts"
+            element={
+              <Parent>
+                <Carts />
+              </Parent>
+            }
+          />
         </Routes>
       </BrowserRouter>
     </div>
