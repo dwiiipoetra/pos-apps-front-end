@@ -44,7 +44,6 @@ const AddOrders = () => {
   return (
     <>
       <div className="content-wrapper">
-        {/* <!-- Content Header (Page header) --> */}
         <div className="content-header">
           <div className="container-fluid">
             <div className="row mb-2">

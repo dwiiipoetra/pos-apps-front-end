@@ -1,17 +1,36 @@
-import React from "react";
+import axios from "axios";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-
-const showFormattedDate = (date) => {
-  const options = {
-    weekday: "long",
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  };
-  return new Date(date).toLocaleDateString("id-ID", options);
-};
+import { showFormattedDate } from "../../helpers";
 
 const Orders = () => {
+  const [orders, setOrders] = useState([]);
+  useEffect(() => {
+    axios
+      .get("https://630331acc6dda4f287c4e755.mockapi.io/api/v1/order")
+      .then((res) => {
+        setOrders(res.data);
+      });
+  }, []);
+
+  const [search, setSearch] = useState("");
+  const [filteredResults, setFilteredResults] = useState([]);
+
+  const searchHandler = (searchValue) => {
+    setSearch(searchValue);
+    if (search === "") {
+      setFilteredResults(orders);
+    } else {
+      const filteredOrders = orders.filter((order) => {
+        return Object.values(order)
+          .join("")
+          .toLowerCase()
+          .includes(search.toLowerCase());
+      });
+      setFilteredResults(filteredOrders);
+    }
+  };
+
   return (
     <div className="content-wrapper">
       {/* <!-- Content Header (Page header) --> */}
@@ -41,6 +60,7 @@ const Orders = () => {
                     placeholder="Search"
                     aria-label="Search"
                     aria-describedby="search-addon"
+                    onChange={(e) => searchHandler(e.target.value)}
                   />
                   <span className="input-group-text border-0" id="search-addon">
                     <i className="fas fa-search"></i>
@@ -75,34 +95,71 @@ const Orders = () => {
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>AE-183-8748</td>
-                        <td>John Doe</td>
-                        <td>Dwi Putra</td>
-                        <td>Rp 450.000,00</td>
-                        <td>
-                          <span className="tag tag-success">
-                            {showFormattedDate(Date())}
-                          </span>
-                        </td>
-                        <td>
-                          <span className="badge bg-success">Success</span>
-                        </td>
-                        <td>
-                          <Link
-                            to="/orders/view/id"
-                            className="btn btn-outline-primary mr-2"
-                          >
-                            <i className="fa fa-eye"></i> View
-                          </Link>
-                          <Link
-                            to="/orders/edit/id"
-                            className="btn btn-outline-success"
-                          >
-                            <i className="fa fa-edit"></i> Edit
-                          </Link>
-                        </td>
-                      </tr>
+                      {search.length > 1
+                        ? filteredResults.map((o) => (
+                            <tr key={o.order_id}>
+                              <td>{o.order_id}</td>
+                              <td>{o.username}</td>
+                              <td>{o.customer_name}</td>
+                              <td>{o.amount}</td>
+                              <td>
+                                <span className="tag tag-success">
+                                  {showFormattedDate(o.created_at)}
+                                </span>
+                              </td>
+                              <td>
+                                <span className="badge bg-success">
+                                  Success
+                                </span>
+                              </td>
+                              <td>
+                                <Link
+                                  to="/orders/view/id"
+                                  className="btn btn-outline-primary mr-2"
+                                >
+                                  <i className="fa fa-eye"></i> View
+                                </Link>
+                                <Link
+                                  to="/orders/edit/id"
+                                  className="btn btn-outline-success"
+                                >
+                                  <i className="fa fa-edit"></i> Edit
+                                </Link>
+                              </td>
+                            </tr>
+                          ))
+                        : orders.map((o) => (
+                            <tr key={o.order_id}>
+                              <td>{o.order_id}</td>
+                              <td>{o.username}</td>
+                              <td>{o.customer_name}</td>
+                              <td>{o.amount}</td>
+                              <td>
+                                <span className="tag tag-success">
+                                  {showFormattedDate(o.created_at)}
+                                </span>
+                              </td>
+                              <td>
+                                <span className="badge bg-success">
+                                  Success
+                                </span>
+                              </td>
+                              <td>
+                                <Link
+                                  to={`/orders/${o.order_id}`}
+                                  className="btn btn-outline-primary mr-2"
+                                >
+                                  <i className="fa fa-eye"></i> View
+                                </Link>
+                                {/* <Link
+                                  to="/orders/edit/id"
+                                  className="btn btn-outline-success"
+                                >
+                                  <i className="fa fa-edit"></i> Edit
+                                </Link> */}
+                              </td>
+                            </tr>
+                          ))}
                     </tbody>
                   </table>
                 </div>

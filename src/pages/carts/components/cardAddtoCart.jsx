@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import CartContext from "../../../context/cart/CartContext";
-import { formatRupiah } from "../../../helpers";
+import { showFormattedIDR } from "../../../helpers";
 
 const CardAddtoCart = ({ item }) => {
   const { changeQuantity, removeItem } = useContext(CartContext);
@@ -23,7 +23,7 @@ const CardAddtoCart = ({ item }) => {
         <p>
           <strong>{item.name}</strong>
         </p>
-        <p>{formatRupiah(item.price)}</p>
+        <p>{showFormattedIDR(item.price)}</p>
         <p>Stock ({item.stock})</p>
         {/* <!-- Data --> */}
       </div>
@@ -62,7 +62,7 @@ const CardAddtoCart = ({ item }) => {
 
         {/* <!-- Price --> */}
         <p>
-          <strong>{formatRupiah(item.price * item.qty)}</strong>
+          <strong>{showFormattedIDR(item.price * item.qty)}</strong>
         </p>
         {/* <!-- Price --> */}
       </div>
