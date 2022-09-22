@@ -13,97 +13,100 @@ import AddProducts from "./pages/products/addProducts";
 import Login from "./pages/login";
 import Parent from "./components/parent";
 import DetailProducts from "./pages/products/detailProducts";
+import { AuthProvider } from "./context/login";
 
 function App() {
   return (
     <div className="wrapper">
-      <BrowserRouter>
-        <Routes>
-          <Route exact path="/" element={<Login />} />
+      <AuthProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route exact path="/" element={<Login />} />
 
-          <Route
-            exact
-            path="/home"
-            element={
-              <Parent>
-                <Home />
-              </Parent>
-            }
-          />
-          <Route
-            exact
-            path="/users"
-            element={
-              <Parent>
-                <Users />
-              </Parent>
-            }
-          />
-          <Route
-            exact
-            path="/users/add"
-            element={
-              <Parent>
-                <AddUsers />
-              </Parent>
-            }
-          />
-          <Route
-            exact
-            path="/users/edit/:id"
-            element={
-              <Parent>
-                <EditUsers />
-              </Parent>
-            }
-          />
-          <Route
-            exact
-            path="/orders"
-            element={
-              <Parent>
-                <Orders />
-              </Parent>
-            }
-          />
-          <Route
-            exact
-            path="/orders/add"
-            element={
-              <Parent>
-                <AddOrders />
-              </Parent>
-            }
-          />
-          <Route
-            exact
-            path="/products"
-            element={
-              <Parent>
-                <Products />
-              </Parent>
-            }
-          />
-          <Route
-            exact
-            path="/products/add"
-            element={
-              <Parent>
-                <AddProducts />
-              </Parent>
-            }
-          />
-          <Route
-            exact
-            path="/products/:product_id"
-            element={
-              <Parent>
-                <DetailProducts />
-              </Parent>
-            }
-          />
-        </Routes>
-      </BrowserRouter>
+            <Route
+              exact
+              path="/home"
+              element={
+                <Parent>
+                  <Home />
+                </Parent>
+              }
+            />
+            <Route
+              exact
+              path="/users"
+              element={
+                <Parent>
+                  <Users />
+                </Parent>
+              }
+            />
+            <Route
+              exact
+              path="/users/add"
+              element={
+                <Parent>
+                  <AddUsers />
+                </Parent>
+              }
+            />
+            <Route
+              exact
+              path="/users/edit/:id"
+              element={
+                <Parent>
+                  <EditUsers />
+                </Parent>
+              }
+            />
+            <Route
+              exact
+              path="/orders"
+              element={
+                <Parent>
+                  <Orders />
+                </Parent>
+              }
+            />
+            <Route
+              exact
+              path="/orders/add"
+              element={
+                <Parent>
+                  <AddOrders />
+                </Parent>
+              }
+            />
+            <Route
+              exact
+              path="/products"
+              element={
+                <Parent>
+                  <Products />
+                </Parent>
+              }
+            />
+            <Route
+              exact
+              path="/products/add"
+              element={
+                <Parent>
+                  <AddProducts />
+                </Parent>
+              }
+            />
+            <Route
+              exact
+              path="/products/:product_id"
+              element={
+                <Parent>
+                  <DetailProducts />
+                </Parent>
+              }
+            />
+          </Routes>
+        </BrowserRouter>
+      </AuthProvider>
     </div>
   );
 }

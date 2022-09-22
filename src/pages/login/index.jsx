@@ -1,37 +1,30 @@
 import React from "react";
-import axios from "axios";
 import { useState } from "react";
-import swal from "sweetalert";
 import { useNavigate } from "react-router-dom";
-import { async } from "@firebase/util";
+import { loginUser, useAuthState, useAuthDispatch } from "../../context/login";
 
 const Login = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  // console.log({ email, password });
 
-  const handleApi = (e) => {
+  const dispatch = useAuthDispatch();
+  const { loading, errorMessage } = useAuthState();
+
+  const handleLogin = async (e) => {
     e.preventDefault();
-    console.log({ email, password });
 
-    const data = {
-      email,
-      password,
-    };
+    const body = { email, password };
 
-    const res = axios
-      .post("https://6327f60f5731f3db99613806.mockapi.io/users", data)
-      .then(function (response) {
-        swal("login berhasil", "success");
-        navigate("/home");
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-    console.log("ini data", data);
+    try {
+      const response = await loginUser(dispatch, body);
+      console.log(response);
+      if (!response) return;
+      navigate("/home");
+    } catch (error) {
+      console.log("disiniiiiiiiiiiiiiiiii", error);
+    }
   };
-
   return (
     <div>
       <div className="login-box mx-auto mt-5">
@@ -45,7 +38,7 @@ const Login = () => {
             <p className="login-box-msg font-weight-bolder">Login</p>
             <form>
               <div className="input-group mb-3">
-                <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required="required" className="form-control" placeholder="Email" />
+                <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} disabled={loading} className="form-control" placeholder="Email" />
                 <div className="input-group-append">
                   <div className="input-group-text">
                     <span className="fas fa-envelope"></span>
@@ -53,7 +46,7 @@ const Login = () => {
                 </div>
               </div>
               <div className="input-group mb-3">
-                <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required="required" className="form-control" placeholder="Password" />
+                <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} disabled={loading} className="form-control" placeholder="Password" />
                 <div className="input-group-append">
                   <div className="input-group-text">
                     <span className="fas fa-lock"></span>
@@ -61,7 +54,7 @@ const Login = () => {
                 </div>
               </div>
               <div className="row">
-                <button type="submit" onClick={handleApi} className="btn btn-primary btn-block">
+                <button type="submit" onClick={handleLogin} disabled={loading} className="btn btn-primary btn-block">
                   Sign In
                 </button>
               </div>

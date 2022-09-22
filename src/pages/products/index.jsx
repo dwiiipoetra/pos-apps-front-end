@@ -22,11 +22,6 @@ const Products = () => {
     }
   };
 
-  // handlerEdit = ((e)=>{
-  //   let dataId = preseInt(e.target.value)
-
-  // })
-
   useEffect(() => {
     if (data.length < 1) {
       getAllProducts(1, 12, "", "");
@@ -124,10 +119,8 @@ const Products = () => {
                                 {/* <img src={images[items.img]} alt="huzelnut" width="50px" /> */}
                               </td>
                               <td>{items.name}</td>
-                              <td>Rp.{items.price}</td>
-                              <td>
-                                <input type="disabled" value={items.stock}></input>
-                              </td>
+                              <td>Rp. {items.price}</td>
+                              <td>{items.stock}</td>
                               <td>
                                 <div>
                                   <Link to={`/products/${items.product_id}`} className="btn btn-outline-success mr-2">

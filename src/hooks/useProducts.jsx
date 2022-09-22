@@ -9,7 +9,7 @@ const useProducts = () => {
       const res = await api.getAll(page, limit, sortBy, order);
       setData(res.data);
     } catch (err) {
-      console.log(err);
+      console.log("disini", err);
     }
   };
 

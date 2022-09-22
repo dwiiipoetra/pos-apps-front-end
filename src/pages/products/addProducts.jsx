@@ -12,7 +12,9 @@ const AddProducts = () => {
   const [stock, setStock] = useState();
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault(
+      
+    );
     // const formData = new FormData();
     // formData.append("img", img);
     // formData.append("name", name);
