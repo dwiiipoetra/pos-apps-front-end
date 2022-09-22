@@ -96,19 +96,23 @@ const AddOrders = () => {
                   ? filteredResults.map((p, i) => (
                       <CardAddOrders
                         key={i}
+                        id={i}
                         name={p.name}
-                        image={p.image}
+                        price={p.price}
                         stock={p.stock}
-                        item={p}
+                        image={p.image}
+                        qty={1}
                       />
                     ))
                   : products.map((p, i) => (
                       <CardAddOrders
                         key={i}
+                        id={i}
                         name={p.name}
-                        image={p.image}
+                        price={p.price}
                         stock={p.stock}
-                        item={p}
+                        image={p.image}
+                        qty={1}
                       />
                     ))}
               </div>
