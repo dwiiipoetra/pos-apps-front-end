@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
 import CartContext from "../../context/cart/CartContext";
 import CardAddtoCart from "./components/cardAddtoCart";
-import { formatRupiah } from "../../helpers";
+import { showFormattedIDR, showFormattedDate } from "../../helpers";
 
 const Carts = () => {
   const { cartItems } = useContext(CartContext);
-  const totalAmount = formatRupiah(
+  const totalAmount = showFormattedIDR(
     cartItems.reduce(
       (amount, cartItem) => cartItem.price * cartItem.qty + amount,
       0

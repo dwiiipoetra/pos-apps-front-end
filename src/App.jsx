@@ -7,6 +7,7 @@ import EditUsers from "./pages/users/editUsers";
 import Home from "./pages/dashboard";
 import Orders from "./pages/orders";
 import AddOrders from "./pages/orders/addOrders";
+import DetailOrders from "./pages/orders/detailOrders";
 import Products from "./pages/products";
 import Carts from "./pages/carts";
 import AddProducts from "./pages/products/addProducts";
@@ -75,6 +76,16 @@ function App() {
               </Parent>
             }
           />
+          <Route
+            exact
+            path="/orders/:order_id"
+            element={
+              <Parent>
+                <DetailOrders />
+              </Parent>
+            }
+          />
+
           <Route
             exact
             path="/products"
